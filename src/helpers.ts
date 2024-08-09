@@ -1,9 +1,16 @@
-import { BinaryLike, createHash } from 'crypto'
-export function hash (data: BinaryLike) {
-  return createHash('sha256').update(data).digest('hex')
+import { BinaryLike, createHash } from "crypto";
+
+
+export function hash(dado: BinaryLike): string {
+    return createHash('sha256').update(dado).digest('hex');
 }
 
-export function isHashProofed ({ hash, difficulty = 4, prefix = '0' }: { hash: string, difficulty?: number, prefix?: string }) {
-  const check = prefix.repeat(difficulty)
-  return hash.startsWith(check)
+export function hashValidado({ hash, dificuldade = 4, prefixo = '0' }:
+    {
+        hash: string,
+        dificuldade: number,
+        prefixo: string
+    }): boolean {
+    const check: string = prefixo.repeat(dificuldade)
+    return hash.startsWith(check)
 }
